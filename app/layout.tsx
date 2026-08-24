@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LearnHub Design System",
-  description: "A unified learning platform design language.",
+  title: "LearnHub | Intelligent Learning",
+  description: "Search your learning in plain English.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
