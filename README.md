@@ -36,3 +36,30 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 # LearnHub
+
+## Seed Sanity content
+
+Copy `.env.example` to `.env.local` and provide a Sanity project ID and dataset. Sign in with the Sanity CLI using `npx sanity login`, then run:
+
+```bash
+npm run seed
+```
+
+This imports `scripts/learnhub-seed.ndjson` with replacement enabled, creating or updating a starter catalog of real-world web development courses covering Next.js, Docker, and TypeScript. Keep the import token server-side and never expose it to the browser. To verify the import, run the count query below with the project and dataset from `.env.local`:
+
+```bash
+npx sanity documents query '*[defined(_type)] | count'
+```
+
+The seeded content should contain 3 categories, 3 instructors, 9 lessons, and 3 courses.
+
+## Generate catalog images
+
+Generate the course covers and illustrated instructor portraits, then upload and link them to the Sanity documents:
+
+```bash
+npm run generate:assets
+npm run upload:assets
+```
+
+The image command requires `SANITY_API_WRITE_TOKEN` in `.env.local`. It reuses existing Sanity assets by filename, so rerunning it does not create duplicate image assets.
